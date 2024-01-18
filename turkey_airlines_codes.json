@@ -1,0 +1,326 @@
+[
+  {
+    "Rank": 1,
+    "Airport": "Istanbul Airport",
+    "Location": "Istanbul",
+    "Code": "IST"
+  },
+  {
+    "Rank": 2,
+    "Airport": "Sabiha Gökçen International Airport",
+    "Location": "Istanbul",
+    "Code": "SAW"
+  },
+  {
+    "Rank": 3,
+    "Airport": "Antalya Airport",
+    "Location": "Antalya",
+    "Code": "AYT"
+  },
+  {
+    "Rank": 4,
+    "Airport": "Esenboğa International Airport",
+    "Location": "Ankara",
+    "Code": "ESB"
+  },
+  {
+    "Rank": 5,
+    "Airport": "Adnan Menderes Airport",
+    "Location": "Izmir",
+    "Code": "ADB"
+  },
+  {
+    "Rank": 6,
+    "Airport": "Adana Şakirpaşa Airport",
+    "Location": "Adana",
+    "Code": "ADA"
+  },
+  {
+    "Rank": 7,
+    "Airport": "Trabzon Airport",
+    "Location": "Trabzon",
+    "Code": "TZX"
+  },
+  {
+    "Rank": 8,
+    "Airport": "Dalaman Airport",
+    "Location": "Muğla / Dalaman",
+    "Code": "DLM"
+  },
+  {
+    "Rank": 9,
+    "Airport": "Milas-Bodrum Airport",
+    "Location": "Muğla / Bodrum",
+    "Code": "BJV"
+  },
+  {
+    "Rank": 10,
+    "Airport": "Oğuzeli Airport",
+    "Location": "Gaziantep / Oğuzeli",
+    "Code": "GZT"
+  },
+  {
+    "Rank": 11,
+    "Airport": "Kayseri Erkilet Airport",
+    "Location": "Kayseri",
+    "Code": "ASR"
+  },
+  {
+    "Rank": 12,
+    "Airport": "Diyarbakır Airport",
+    "Location": "Diyarbakır",
+    "Code": "DIY"
+  },
+  {
+    "Rank": 13,
+    "Airport": "Van Ferit Melen Airport",
+    "Location": "Van",
+    "Code": "VAN"
+  },
+  {
+    "Rank": 14,
+    "Airport": "Erzurum Airport",
+    "Location": "Erzurum",
+    "Code": "ERZ"
+  },
+  {
+    "Rank": 15,
+    "Airport": "Hatay Airport",
+    "Location": "Hatay/Antakya",
+    "Code": "HTY"
+  },
+  {
+    "Rank": 16,
+    "Airport": "Konya Airport",
+    "Location": "Konya",
+    "Code": "KYA"
+  },
+  {
+    "Rank": 17,
+    "Airport": "Ordu Giresun Airport",
+    "Location": "Ordu",
+    "Code": "OGU"
+  },
+  {
+    "Rank": 18,
+    "Airport": "Samsun-Çarşamba Airport",
+    "Location": "Samsun/Çarşamba",
+    "Code": "SZF"
+  },
+  {
+    "Rank": 19,
+    "Airport": "Elazığ Airport",
+    "Location": "Elazığ",
+    "Code": "EZS"
+  },
+  {
+    "Rank": 20,
+    "Airport": "Malatya Erhaç Airport",
+    "Location": "Malatya",
+    "Code": "MLX"
+  },
+  {
+    "Rank": 21,
+    "Airport": "Şanlıurfa GAP Airport",
+    "Location": "Şanlıurfa",
+    "Code": "GNY"
+  },
+  {
+    "Rank": 22,
+    "Airport": "Gazipaşa Airport",
+    "Location": "Antalya/Alanya",
+    "Code": "GZP"
+  },
+  {
+    "Rank": 23,
+    "Airport": "Denizli Çardak Airport",
+    "Location": "Denizli/Çardak",
+    "Code": "DNZ"
+  },
+  {
+    "Rank": 24,
+    "Airport": "Mardin Airport",
+    "Location": "Mardin",
+    "Code": "MQM"
+  },
+  {
+    "Rank": 25,
+    "Airport": "Kars Airport",
+    "Location": "Kars",
+    "Code": "KSY"
+  },
+  {
+    "Rank": 26,
+    "Airport": "Sivas Airport",
+    "Location": "Sivas",
+    "Code": "VAS"
+  },
+  {
+    "Rank": 27,
+    "Airport": "Batman Airport",
+    "Location": "Batman",
+    "Code": "BAL"
+  },
+  {
+    "Rank": 28,
+    "Airport": "Erzincan Airport",
+    "Location": "Erzincan",
+    "Code": "ERC"
+  },
+  {
+    "Rank": 29,
+    "Airport": "Muş Airport",
+    "Location": "Muş",
+    "Code": "MSR"
+  },
+  {
+    "Rank": 30,
+    "Airport": "Balıkesir Koca Seyit Airport",
+    "Location": "Balıkesir/Edremit",
+    "Code": "EDO"
+  },
+  {
+    "Rank": 31,
+    "Airport": "Şırnak Airport",
+    "Location": "Şırnak",
+    "Code": "NKT"
+  },
+  {
+    "Rank": 32,
+    "Airport": "Kahramanmaraş Airport",
+    "Location": "Kahramanmaraş",
+    "Code": "KCM"
+  },
+  {
+    "Rank": 33,
+    "Airport": "Ağrı Airport",
+    "Location": "Ağrı",
+    "Code": "AJI"
+  },
+  {
+    "Rank": 34,
+    "Airport": "Adıyaman Airport",
+    "Location": "Adıyaman",
+    "Code": "ADF"
+  },
+  {
+    "Rank": 35,
+    "Airport": "Bursa Yenişehir Airport",
+    "Location": "Bursa/Yenişehir",
+    "Code": "YEI"
+  },
+  {
+    "Rank": 36,
+    "Airport": "Iğdır Airport",
+    "Location": "Iğdır",
+    "Code": "IGD"
+  },
+  {
+    "Rank": 37,
+    "Airport": "Amasya Merzifon Airport",
+    "Location": "Amasya / Merzifon",
+    "Code": "MZH"
+  },
+  {
+    "Rank": 38,
+    "Airport": "Çanakkale Airport",
+    "Location": "Çanakkale",
+    "Code": "CKZ"
+  },
+  {
+    "Rank": 39,
+    "Airport": "Isparta Süleyman Demirel Airport",
+    "Location": "Isparta",
+    "Code": "ISE"
+  },
+  {
+    "Rank": 40,
+    "Airport": "Bingöl Airport",
+    "Location": "Bingöl",
+    "Code": "BGG"
+  },
+  {
+    "Rank": 41,
+    "Airport": "Hakkari Yüksekova Airport",
+    "Location": "Hakkari",
+    "Code": "YKO"
+  },
+  {
+    "Rank": 42,
+    "Airport": "Sinop Airport",
+    "Location": "Sinop",
+    "Code": "SIC"
+  },
+  {
+    "Rank": 43,
+    "Airport": "Nevşehir Kapadokya Airport",
+    "Location": "Nevşehir",
+    "Code": "NAV"
+  },
+  {
+    "Rank": 44,
+    "Airport": "Tekirdağ Çorlu Airport",
+    "Location": "Tekirdağ/Çorlu",
+    "Code": "TEQ"
+  },
+  {
+    "Rank": 45,
+    "Airport": "Zafer Airport",
+    "Location": "Kütahya",
+    "Code": "KZR"
+  },
+  {
+    "Rank": 46,
+    "Airport": "Kastamonu Airport",
+    "Location": "Kastamonu",
+    "Code": "KFS"
+  },
+  {
+    "Rank": 47,
+    "Airport": "Eskişehir Anadolu Airport",
+    "Location": "Eskişehir",
+    "Code": "AOE"
+  },
+  {
+    "Rank": 48,
+    "Airport": "Kocaeli Cengiz Topel Airport",
+    "Location": "Kocaeli",
+    "Code": "KCO"
+  },
+  {
+    "Rank": 49,
+    "Airport": "Zonguldak Airport",
+    "Location": "Zonguldak",
+    "Code": "ONQ"
+  },
+  {
+    "Rank": 50,
+    "Airport": "Siirt Airport",
+    "Location": "Siirt",
+    "Code": "SXZ"
+  },
+  {
+    "Rank": 51,
+    "Airport": "Tokat Airport",
+    "Location": "Tokat",
+    "Code": "TJK"
+  },
+  {
+    "Rank": 52,
+    "Airport": "Uşak Airport",
+    "Location": "Uşak",
+    "Code": "USQ"
+  },
+  {
+    "Rank": 53,
+    "Airport": "Balıkesir Airport",
+    "Location": "Balıkesir",
+    "Code": "BZI"
+  },
+  {
+    "Rank": 54,
+    "Airport": "Gökçeada Airport",
+    "Location": "Çanakkale/Gökçeada",
+    "Code": "GKD"
+  }
+]
