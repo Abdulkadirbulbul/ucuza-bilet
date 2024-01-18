@@ -1,0 +1,12 @@
+beautifulsoup4==4.12.3
+certifi==2023.11.17
+charset-normalizer==3.3.2
+DateTime==5.4
+idna==3.6
+python-decouple==3.8
+pytz==2023.3.post1
+requests==2.31.0
+secure-smtplib==0.1.1
+soupsieve==2.5
+urllib3==2.1.0
+zope.interface==6.1

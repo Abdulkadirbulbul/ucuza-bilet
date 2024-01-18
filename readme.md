@@ -11,11 +11,7 @@ Verileri https://www.ucuzabilet.com/ sitesinden çekmektedir ve belirli aralıkl
 1. **Kütüphanelerin Yüklenmesi:**
    - Projeyi çalıştırmadan önce gerekli kütüphaneleri yükleyin.
      ```bash
-     pip install requests beautifulsoup4
-     pip install secure-smtplib
-     pip install requests
-     pip install DateTime
-     from decouple import config
+     pip install -r requirements.txt
      ```
 
 2. **E-posta Ayarları:**
@@ -55,11 +51,7 @@ It pulls the data from https://www.ucuzabilet.com/ and you can repeat this proce
 1. **Installing Libraries:**
     - Install the necessary libraries before running the project.
       ```bash
-      pip install requests beautifulsoup4
-      pip install secure-smtplib
-      pip install requests
-      pip install DateTime
-      from decouple import config
+      pip install -r requirements.txt
       ```
 
 2. **Email Settings:**
