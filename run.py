@@ -4,23 +4,38 @@ from bs4 import BeautifulSoup
 import smtplib
 from decouple import config
 
+def send_telegram_message(flight_data):
+    telegramApi = config("api_key")
+    telegramMessageid = config("messageId")
+    api=f'{telegramApi}'
+    messageId=f'{telegramMessageid}'
+    requests.post(
+        url='https://api.telegram.org/bot{0}/{1}'.format(api,
+            "sendMessage"),
+            data={'chat_id': messageId, 'text': createMessage(flight_data)}
+    )
+
+def createMessage(flight_data):
+    message = "Ucuz Uçuş Bulundu:\n\n"
+    for flight in flight_data:
+        print("/" * 22)
+        print(flight)
+
+        message += f"Airline: {flight[0]}\n"
+        message += f"Flight Number: {flight[1]}\n"
+        message += f"Departure Time: {flight[2]}\n"
+        message += f"Duration: {flight[3]}\n"
+        message += f"Price: {flight[4]}\n"
+        message += f"Date: {flight[5]}\n\n"
+    return message
 
 def send_mail(flight_data):
     gonderici_mail = config("sender_mail")
     gonderici_mail_uygulama_anahtari = config("sender_mail_app_key")
     alici_mail = config("recipient_mail")
-
-    content = "Ucuz Uçuş Bulundu:\n\n"
-    for flight in flight_data:
-        print("/" * 22)
-        print(flight)
-
-        content += f"Airline: {flight[0]}\n"
-        content += f"Flight Number: {flight[1]}\n"
-        content += f"Departure Time: {flight[2]}\n"
-        content += f"Duration: {flight[3]}\n"
-        content += f"Price: {flight[4]}\n"
-        content += f"Date: {flight[5]}\n\n"
+   
+    
+    content=createMessage(flight_data)   
     try:
         mail = smtplib.SMTP('smtp.gmail.com', 587)
         mail.ehlo()
@@ -116,5 +131,6 @@ if __name__ == "__main__":
         print(result)
         if len(result) > 0:
             send_mail(result)
+            send_telegram_message(result)
     else:
         print("Uygun uçuş bulunamadı.")
