@@ -2,70 +2,82 @@ import requests
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 import smtplib
-from decouple import config
+import os
+from dotenv import load_dotenv
 
-def send_telegram_message(flight_data):
-    telegramApi = config("api_key")
-    telegramMessageid = config("messageId")
-    api=f'{telegramApi}'
-    messageId=f'{telegramMessageid}'
-    requests.post(
-        url='https://api.telegram.org/bot{0}/{1}'.format(api,
-            "sendMessage"),
-            data={'chat_id': messageId, 'text': createMessage(flight_data)}
-    )
+load_dotenv()
+
+chat_id=os.getenv("TELEGRAM_MESSAGE_ID")
+api_key=os.getenv("TELEGRAM_API_KEY")
+gonderici_mail = os.getenv("SENDER_MAIL")
+gonderici_mail_uygulama_anahtari = os.getenv("SENDER_MAIL_APP_KEY")
+alici_mail = os.getenv("RECIPIENT_MAIL")
+url = f"https://api.telegram.org/bot{api_key}/sendMessage"
+
+def send_telegram_message(api_key, chat_id, flight_data):
+   
+    message = createMessage(flight_data)
+
+    # Telegram mesaj uzunluğu sınırlaması (4096 karakter)
+    max_length = 4096
+
+    # Mesajı uygun bir uzunluğa böl
+    while len(message) > max_length:
+        partial_message = message[:max_length]
+        
+        # Kalan kısmı al
+        message = message[max_length:]
+        
+        # Mesajı gönder
+        send_partial_message(api_key, chat_id, partial_message)
+
+    # Son kısmı gönder
+    send_partial_message(api_key, chat_id, message)
+
+def send_partial_message(api_key, chat_id, partial_message):
+    data = {'chat_id': chat_id, 'text': partial_message}
+    response = requests.post(url, data=data)
+
+    if response.status_code == 200:
+        print("Mesaj başarıyla gönderildi.")
+    else:
+        print(f"Mesaj gönderme hatası: {response.status_code}, {response.text}")
+
 
 def createMessage(flight_data):
     message = "Ucuz Uçuş Bulundu:\n\n"
     for flight in flight_data:
-        print("/" * 22)
-        print(flight)
-
-        message += f"Airline: {flight[0]}\n"
-        message += f"Flight Number: {flight[1]}\n"
-        message += f"Departure Time: {flight[2]}\n"
-        message += f"Duration: {flight[3]}\n"
-        message += f"Price: {flight[4]}\n"
-        message += f"Date: {flight[5]}\n\n"
+        message += f"Havayolu: {flight[0]}\n"
+        message += f"Uçuş Numarası: {flight[1]}\n"
+        message += f"Kalkış Saati: {flight[2]}\n"
+        message += f"Süre: {flight[3]}\n"
+        message += f"Fiyat: {flight[4]}\n"
+        message += f"Tarih: {flight[5]}\n\n"
     return message
 
 def send_mail(flight_data):
-    gonderici_mail = config("sender_mail")
-    gonderici_mail_uygulama_anahtari = config("sender_mail_app_key")
-    alici_mail = config("recipient_mail")
-   
-    
-    content=createMessage(flight_data)   
+    content = createMessage(flight_data)
     try:
         mail = smtplib.SMTP('smtp.gmail.com', 587)
         mail.ehlo()
         mail.starttls()
-        sender = f'{gonderici_mail}'
-        recipient = f'{alici_mail}'
-        # Burada mail şifrenizi girmemeniz gerekiyor 
-        # Mail hesabınızda 2 adımlı doğrulamayı açtıkdan sonra 
-        # Arama yerinde Uygulama anahtarı yazıp yeni bir anahtar oluşturup
-        # İsme herhangi bir isim yazıp şifreyi almanız gerekiyor.
-        # Aldığınız 16 haneli şifreyi aşağıya yazmanız gerekiyor.
-        mail.login(f'{gonderici_mail}', f'{gonderici_mail_uygulama_anahtari}')
+        sender = gonderici_mail
+        recipient = alici_mail
+        mail.login("upworkali2289@gmail.com", "vbgl uygg foex wzkw")
         subject = 'Ucuz Uçuş Bulundu'
         header = f'To: {recipient}\nFrom: {sender}\nSubject: {subject}\n'
         content = header + content
         mail.sendmail(sender, recipient, content.encode('utf-8'))
         mail.close()
-        print("Email sent successfully!")
+        print("E-posta başarıyla gönderildi!")
     except Exception as e:
-        print(f"Error: {e}")
-
+        print(f"Hata: {e}")
 
 def ucuzabilet_fiyatlari_al(nereden, nereye, baslangic_tarihi, gun_farki):
     gun_farki = int(gun_farki)
-    print(nereden + " " + nereye + " " + str(baslangic_tarihi) + " " + str(gun_farki))
-    # fiyatlar = []
     tum_fiyatlar = []
     while gun_farki > -1:
-        print(str(baslangic_tarihi)[0:10] + " Tarihindeki uçuşlar aranıyor...")
-        baslangic_tarihi_str = str(baslangic_tarihi)[0:10]  # Convert to string in the format YYYY-MM-DD
+        baslangic_tarihi_str = str(baslangic_tarihi)[0:10]
         base_url = "https://www.ucuzabilet.com/ic-hat-arama-sonuc"
         params = {
             "from": nereden,
@@ -81,16 +93,14 @@ def ucuzabilet_fiyatlari_al(nereden, nereye, baslangic_tarihi, gun_farki):
         try:
             tbody = soup.find("tbody").find_all("tr", {"data-direction": "flights"})
             for tr in tbody:
-                # print("//////////////////////")
                 airlines = tr.find("div", {"class": "airline"}).text
                 flight_number = tr.find("div", {"class": "flight-number"}).text.strip()
                 flight_time = tr.find("b", {"class": "flight-time"}).text.strip()
                 flight_duration = tr.find("span", {"class": "flight-duration"}).text.strip()
                 price = tr.find("div", {"class": "btn-center"}).find("i", {"class": "integers"}).text.strip() + "TL"
-                # if int(price[:-2]) < istenilen_max_fiyat:
-                #    fiyatlar.append([airlines, flight_number, flight_time, flight_duration, price, baslangic_tarihi_str])
                 tum_fiyatlar.append(
-                    [airlines, flight_number, flight_time, flight_duration, price, baslangic_tarihi_str])
+                    [airlines, flight_number, flight_time, flight_duration, price, baslangic_tarihi_str]
+                )
         except:
             print("Uçuş bulunamadı.")
         baslangic_tarihi += timedelta(days=1)
@@ -98,14 +108,7 @@ def ucuzabilet_fiyatlari_al(nereden, nereye, baslangic_tarihi, gun_farki):
 
     return tum_fiyatlar
 
-
 if __name__ == "__main__":
-    # nereden = "EZS"
-    # nereye = "IST"
-    # b_tarih = "19.01.2024"
-    # bit_tarih = "24.01.2024"
-    # istenilen_max_fiyat=1700
-    gonderici_mail = config("sender_mail")
     nereden = input("Nereden: ")
     nereye = input("Nereye: ")
     try:
@@ -118,7 +121,6 @@ if __name__ == "__main__":
         exit()
     istenilen_max_fiyat = int(input("Max Fiyat: Örnek 1300 >  "))
 
-    # Tarih farkını hesapla
     gun_farki = (bitis_tarihi - baslangic_tarihi).days
 
     fiyatlar = ucuzabilet_fiyatlari_al(nereden, nereye, baslangic_tarihi, gun_farki)
@@ -130,7 +132,7 @@ if __name__ == "__main__":
                 result.append(fiyat)
         print(result)
         if len(result) > 0:
-            send_mail(result)
-            send_telegram_message(result)
+            # send_mail(result)
+            send_telegram_message(api_key, chat_id, result)
     else:
         print("Uygun uçuş bulunamadı.")
